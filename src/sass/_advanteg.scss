@@ -1,6 +1,6 @@
 .advanteg {
     padding: 70px 0 80px 0;
-    background: url('/src/icon/advanteg/bg.png') center (center/cover) no-repeat;
+    background: url('../icon/advanteg/bg.png') center (center/cover) no-repeat;
     
 
     &__wrapper{
@@ -15,6 +15,7 @@
         justify-content: center;
         align-items: center;
         max-width: 239px;
+        
 
     }
 
@@ -38,4 +39,13 @@
         line-height: normal;
         text-align: center;
     }
+    &__icons {
+        &_animated {
+            animation: heartbeat 1.5s ease infinite;
+            &:hover {
+                animation-play-state: paused;
+            }
+        }
     }
+    
+}

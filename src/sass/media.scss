@@ -1,61 +1,44 @@
-@media (max-width: 1200px){
-    .header{
-        padding-right: 20px;
-        &__official{
-            font-size: 20px;
-            span {
-                font-size: 25px;
-            }
-        }
-        &__phone{
-            font-size: 20px;
-        }
-        &__icons {
-            width: 100%;
-        }
+@media (max-width: 768px){
+    .carusel {
+        display: none;
     }
-    
-     
-
-    .button{
-        
-        height: 40px;
-        width: 160px;
-        &_main {
-            height: 50px;
-            width: 200px;
-        }
-    .advanteg {
-        &__item{
-            padding-right: 10px;
-        }
-        &__subtitle {
-            font-size: 22px;
-            }
-        &__descr {
-            font-size: 16px;
-            }
-
+    .container {
+        max-width: 650px;
     }
-    }
-    .promo{
-        &__wrapper{
-            padding-right: 20px;
-        }
-    }
-    
-}
-@media (max-width: 991px){
     .promo {
-        width: 100vh;
+
+    
+        &__wrapper {
+            align-items: center;
     }
-    .advanteg {
-        width: 100vh;
+}
+}
+@media (max-width: 600px) {
+    .container {
+        max-width: 450px;
     }
-    .carusel{
-        width: 100vh;
+    .catalog {
+        &__tab {
+            div {
+                height: 30px;
+                font-size: 12px;
+            }
+                }
+    .catalog__content {
+            justify-content: center;
+        }
     }
-    .consultation {
-        width: 100vh;
+    .footer {
+        position: absolute;
+        height:250px ;
+        iframe {
+            display: none;
+        }
+    .footer__info {
+        width: 100%;
+        height: 250px;
+        }
     }
+    
+
 }

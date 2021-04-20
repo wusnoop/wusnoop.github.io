@@ -1,15 +1,16 @@
 $(document).ready(function(){
     $('.carusel__inner').slick({
-        prevArrow: '<button type="button" class="slick-prev"><img src="src/icon/left.svg"></button>',
-        nextArrow: '<button type="button" class="slick-next"><img src="src/icon/right.png"></button>',
-        rresponsive: [
+        prevArrow: '<button type="button" class="slick-prev"><img src="icon/left.svg"></button>',
+        nextArrow: '<button type="button" class="slick-next"><img src="icon/right.png"></button>',
+        responsive: [
             {
-              breakpoint: 768,
+              breakpoint: 800,
               settings: {
-                arrows: false,
+                slidesToShow: 3,
+                arrows: false
                     
                 }
-              }
+              },
         ]
     
 
@@ -18,6 +19,7 @@ $(document).ready(function(){
       $(this)
         .addClass('catalog__tab_active').siblings().removeClass('catalog__tab_active')
         .closest('div.container').find('div.catalog__content').removeClass('catalog__content_active').eq($(this).index()).addClass('catalog__content_active');
+        
     });
 
     function toggleSlide(item) {
@@ -48,4 +50,87 @@ $(document).ready(function(){
       $('.overlay, #order').fadeIn('slow');
     })
   });
+  // $('#consultation-form').validate();
+  // $('#consultation form').validate({
+  //   rules:{
+  //     name: "required",
+  //     phone: "required",
+  //     email: {
+  //       required: true ,
+  //       email: true
+  //     }
+  //   },
+  //   messages: {
+  //     name: "ВВедите своё имя",
+  //     phone: "введите номер телефона",
+  //     email: {
+  //       required: "введите ствою почту",
+  //       email: "неправильно введён адрес почты"
+  //     }
+  //   }
+  
+  // });
+  // $('#order form').validate();
+  function validateForms(form){
+    $(form).validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 2
+            },
+            phone: "required",
+            email: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            name: {
+                required: "Пожалуйста, введите свое имя",
+                minlength: jQuery.validator.format("Введите {0} символа!")
+              },
+            phone: "Пожалуйста, введите свой номер телефона",
+            email: {
+              required: "Пожалуйста, введите свою почту",
+              email: "Неправильно введен адрес почты"
+            }
+        }
+    });
+};
+  validateForms('#consultation-form');
+  validateForms('#consultation form');
+  validateForms('#order form');
+
+  
+  $('input[name=phone]').mask("+7 (999) 999-99-99");
+  $('form').submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: "mailer/smart.php",
+        data: $(this).serialize()
+    }).done(function() {
+        $(this).find("input").val("");
+        $('#consultation, #order').fadeOut();
+        $('.overlay, #thanks').fadeIn('slow');
+
+        $('form').trigger('reset');
+    });
+    return false;
+});
+
+$(window).scroll(function() {
+  if ($(this).scrollTop() > 1600) {
+      $('.pageup').fadeIn();
+  } else {
+      $('.pageup').fadeOut();
+  }
+});
+
+$("a[href^='#']").click(function(){
+  var _href = $(this).attr("href");
+  $("html, body").animate({scrollTop: $(_href).offset().top+"px"});
+  return false;
+});
+
 });
